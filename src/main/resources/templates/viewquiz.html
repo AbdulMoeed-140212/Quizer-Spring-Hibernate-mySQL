@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quizer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="offset-md-2 col-md-8">
+            <h1 align="center">Quiz </h1>
+            <table th:each="question : ${quiz.questions}" class="table table-bordered table-hover">
+                <tr>
+                    <th colspan="2" th:text = "'Question : ' + ${question.statement}"> </th>
+                </tr>
+                <tr >
+                    <td th:if="${question.option1} != null and ${question.option1} != ''" th:text="'(a)'+${question.option1}"></td>
+                    <td th:if="${question.option2} != null and ${question.option2} != ''" th:text="'(b)'+${question.option2}"></td>
+                </tr>
+                <tr >
+                    <td th:if="${question.option3} != null and ${question.option3} != '' " th:text="'(c)'+${question.option3}"></td>
+                    <td th:if="${question.option4} != null and ${question.option4} != ''" th:text="'(d)'+${question.option4}"></td>
+                </tr>
+                <tr>
+                    <th colspan="2" th:text = "'Answer : ' + ${question.answer}"> </th>
+                </tr>
+                <tr>
+                    <th colspan="2" th:text = "'Marks : ' + ${question.marks}"> </th>
+                </tr>
+            </table>
+            <a href="/">Go to Home page</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

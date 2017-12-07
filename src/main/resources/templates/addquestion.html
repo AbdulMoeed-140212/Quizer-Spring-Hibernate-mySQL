@@ -1,50 +1,99 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="../css/bootstrap.min.css"  th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <meta charset="UTF-8">
+    <title>Quizer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container">
-<form action="#" th:action="@{/savequestion}" th:object="${post}" method="post">
-    <table>
-        <tr>
-            <td>Question</td>
-            <td><input type="text" th:field="${questions.question}" /></td>
+    <div class="row">
+        <div class="offset-md-2 col-md-8">
+            <h1 align="center">Quiz </h1>
 
-        </tr>
-        <tr>
-            <td>Option 1</td>
-            <td><input type="text" th:field="${questions.option1}" /></td>
-        </tr>
-        <tr>
-            <td>Option 2</td>
-            <td><input type="text" th:field="${questions.option2}" /></td>
-        </tr>
-        <tr>
-            <td>Option 3</td>
-            <td><input type="text" th:field="${questions.option3}" /></td>
-        </tr>
-        <tr>
-            <td>Option 4</td>
-            <td><input type="text" th:field="${questions.option4}" /></td>
-        </tr>
-        <tr>
-            <td>Correct Answer</td>
-            <td><input type="text" th:field="${questions.correctAnswer}" /></td>
-        </tr>
-        <tr>
-            <td>Marks</td>
-            <td><input type="text" th:field="${questions.marks}" /></td>
-        </tr>
-        <tr>
-            <td><button type="submit">Submit post</button></td>
-            <td><button type="reset">Reset Form</button></td>
-        </tr>
-    </table>
-</form>
+            <form  action="#" th:action="@{/savequestion}" th:object="${q}" method="post">
+
+                <div class="form-group">
+                    <label><input type="radio" value="1" name ="type" id="mcq">MCQ</label>
+                    <label><input type="radio" value="2" name ="type" id="tf">True/False</label>
+                    <label><input type="radio" value="3" name ="type" id="num">Numeric</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" required  th:field="${q.statement}" class="form-control" placeholder="Question"/>
+                </div>
+                <div class="form-group options">
+                    <input type="text" th:field="${q.option1}" class="form-control" id="op1" placeholder="Option 1"/>
+                </div>
+                <div class="form-group options">
+                    <input type="text" th:field="${q.option2}" class="form-control" id="op2" placeholder="Option 2"/>
+                </div>
+                <div class="form-group options">
+                    <input type="text"  th:field="${q.option3}" class="form-control" id="op3" placeholder="Option 3"/>
+                </div>
+                <div class="form-group options">
+                    <input type="text"  th:field="${q.option4}" class="form-control" id="op4" placeholder="Option 4"/>
+                </div>
+                <div class="form-group">
+                    <label>Correct Ansewer : </label>
+                    <input type="text" th:field="${q.answer}" id="numanswer" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label>Marks : </label>
+                    <input type="number" min = 0 th:field="${q.marks}" class="form-control" placeholder="Marks"/>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Add Question</button>
+                    <button type="reset" class="btn btn-info">Reset Fields</button>
+                </div>
+            </form>
+            <a href="/">Go Back To Teacher</a>
+        </div>
+    </div>
+
 </div>
-<script src="/resources/js/bootstrap.mini.js"></script>
+
+<script>
+
+    // start ---------- Hide All
+    document.getElementsByClassName('options')[0].style.display = 'none';
+    document.getElementsByClassName('options')[1].style.display = 'none';
+    document.getElementsByClassName('options')[2].style.display = 'none';
+    document.getElementsByClassName('options')[3].style.display = 'none';
+    //---------------------------------------------
+    var e = document.getElementById("answerFromOption");
+
+
+    var mcq = document.getElementById("mcq");
+    mcq.onclick = function(){
+    document.getElementsByClassName('options')[0].style.display = '';
+    document.getElementsByClassName('options')[1].style.display = '';
+    document.getElementsByClassName('options')[2].style.display = '';
+    document.getElementsByClassName('options')[3].style.display = '';
+
+    }
+
+    var tf = document.getElementById("tf");
+    tf.onclick = function(){
+    document.getElementsByClassName('options')[0].style.display = '';
+    document.getElementsByClassName('options')[1].style.display = '';
+    document.getElementsByClassName('options')[2].style.display = 'none';
+    document.getElementsByClassName('options')[3].style.display = 'none';
+
+    document.getElementById('op1').value = 'True';
+    document.getElementById('op2').value = 'False';
+
+    }
+
+    var num = document.getElementById("num");
+    num.onclick = function(){
+    document.getElementsByClassName('options')[0].style.display = 'none';
+    document.getElementsByClassName('options')[1].style.display = 'none';
+    document.getElementsByClassName('options')[2].style.display = 'none';
+    document.getElementsByClassName('options')[3].style.display = 'none';
+
+    }
+</script>
+
 </body>
 </html>

@@ -7,19 +7,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="offset-md-4 col-md-4">
-                <div align="center">
-                <h1>Home Page</h1>
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action"> <a href="/teacher">Teacher</a></li>
-                    <li class="list-group-item list-group-item-action"> <a href="/student">Student</a></li>
-                </ul>
-                </div>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="offset-md-2 col-md-8">
+            <h1 align="center">Quiz</h1>
+            <table  class="table table-bordered table-hover ">
+                <tr th:each="quiz : ${quizes}">
+                    <th><a th:href="'/attempt?qid='+${quiz.quizid}" th:text = "'Quiz No '+ ${quiz.quizid}"></a> </th>
+                </tr>
+            </table>
+            <a href="/">Go to Home page</a>
         </div>
-
     </div>
+
+</div>
 </body>
 </html>

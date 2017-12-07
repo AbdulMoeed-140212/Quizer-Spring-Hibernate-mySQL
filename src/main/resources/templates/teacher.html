@@ -7,19 +7,20 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="offset-md-4 col-md-4">
-                <div align="center">
-                <h1>Home Page</h1>
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action"> <a href="/teacher">Teacher</a></li>
-                    <li class="list-group-item list-group-item-action"> <a href="/student">Student</a></li>
-                </ul>
+<div class="container">
+    <div class="row">
+        <div class="offset-md-4 col-md-4">
+            <h1>Teacher</h1>
+            <form action="/quizofteacher">
+                <div class="form-group">
+                    <input type="text" name = "name" class="form-control" placeholder="Enter name">
                 </div>
-            </div>
+                <input type="submit" value="Go" class="btn btn-success">
+            </form>
+            <a href="/">Go to Home page</a>
         </div>
-
     </div>
+
+</div>
 </body>
 </html>

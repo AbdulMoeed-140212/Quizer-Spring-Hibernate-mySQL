@@ -1,50 +1,45 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="../css/bootstrap.min.css"  th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <meta charset="UTF-8">
+    <title>Quizer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <h1>Attempt Questions</h1>
-            <table border="1px" th:each = "q:${questions}" class="table">
-                <tr>
-                    <td colspan="2" th:text = "'Q '+ ${q.uid}+' : '+${q.question}"></td>
-                </tr>
-                <tr th:if="${q instanceof T(Quizer.model.type.mcq)}">
-                    <td th:if="${q.option1 != null}" th:text = "'(a): '+${q.option1}">op1</td>
-                    <td th:if="${q.option2 != null}" th:text = "'(b): '+${q.option2}">op2</td>
-                </tr>
-                <tr th:if="${q instanceof T(Quizer.model.type.mcq)}">
-                    <td th:if="${q.option3 != null}" th:text = "'(c): '+${q.option3}">op3</td>
-                    <td th:if="${q.option4 != null}" th:text = "'(d): '+${q.option4}">op4</td>
-                </tr>
-                <tr th:if="${q instanceof T(Quizer.model.type.truefalse)}">
-                    <td th:text = "'(a): '+${q.trueyes}">op3</td>
-                    <td th:text = "'(b): '+${q.fasleno}">op4</td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                    <b>Answer</b>
-                    <input type="text" class = "answer" >
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" th:text = "'Marks :'+${q.marks}">Marks</td>
-                </tr>
-            </table>
-            <button id = "submit">Submit</button>
+        <div class="offset-md-2 col-md-8">
+            <h1 align="center">Quiz </h1>
+            <table th:each="question : ${questions}" class="table table-bordered table-hover" >
+                    <tr>
+                        <th colspan="2" th:text = "'Question : ' + ${question.statement}"> </th>
+                    </tr>
+                    <tr >
+                        <td th:if="${question.option1} != null and ${question.option1} != ''" th:text="'(a)'+${question.option1}"></td>
+                        <td th:if="${question.option2} != null and ${question.option2} != ''" th:text="'(b)'+${question.option2}"></td>
+                    </tr>
+                    <tr >
+                        <td th:if="${question.option3} != null and ${question.option3} != '' " th:text="'(c)'+${question.option3}"></td>
+                        <td th:if="${question.option4} != null and ${question.option4} != ''" th:text="'(d)'+${question.option4}"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Answer</b></td>
+                        <td><input type="text" th:field="${answers}"class="answer form-control"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" th:text = "'Marks : ' + ${question.marks}"> </td>
+                    </tr>
+                </table>
+                <button id="go" class="btn btn-success">Submit</button>
+
+            <a href="/">Go to Home page</a>
         </div>
     </div>
 </div>
-<script src="/resources/js/bootstrap.mini.js"></script>
 <script th:inline = "javascript">
 
-    document.getElementById("submit").onclick = function(){
+    document.getElementById("go").onclick = function(){
         var classesNodeList = document.querySelectorAll(".answer");
         values = [];
         for(var i = 0; i < classesNodeList.length; i++) {
@@ -57,7 +52,7 @@
         for( var i=0; i < values.length ; i++)
         {
             console.log(answer[i].correctAnswer + "< > " + values[i])
-            if(answer[i].correctAnswer == values[i]){
+            if(answer[i].answer == values[i]){
                 report = report + "Question " +(i+1)+ "is Correct\n"
                 num = num + answer[i].marks;
             }else{
@@ -68,7 +63,7 @@
         report = report + "Total Marks = " + num + " Out of " + maxnum
         alert(report)
         console.log("Total Number = "+ num )
-        window.location = '/saveMarks?marks=' + num;
+        window.location = '/saveMarks?total=' + num+'&max='+maxnum;
     }
 
 </script>

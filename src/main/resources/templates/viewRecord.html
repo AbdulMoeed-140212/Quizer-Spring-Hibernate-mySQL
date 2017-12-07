@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quizer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="offset-md-2 col-md-8">
+            <h1 align="center" th:text="'REcord of' + ${name}"> </h1>
+            <a href="/quizList">Attempt a quiz</a>
+            <table  class="table table-bordered table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Obtained</th>
+                    <th>Total</th>
+                    <th>Time</th>
+                </tr>
+                <tr th:each="card : ${students}">
+                    <th th:text="${card.rid}"></th>
+                    <th th:text="${card.total}"></th>
+                    <th th:text="${card.outof}"></th>
+                    <th th:text="${card.time}"></th>
+                </tr>
+                </table>
+
+            <a href="/">Go to Home page</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
