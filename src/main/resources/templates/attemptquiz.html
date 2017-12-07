@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../css/bootstrap.min.css"  th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1>Attempt Questions</h1>
+            <table border="1px" th:each = "q:${questions}" class="table">
+                <tr>
+                    <td colspan="2" th:text = "'Q '+ ${q.uid}+' : '+${q.question}"></td>
+                </tr>
+                <tr>
+                    <td th:if="${q.option1 != null}" th:text = "'(a): '+${q.option1}">op1</td>
+                    <td th:if="${q.option2 != null}" th:text = "'(b): '+${q.option2}">op2</td>
+                </tr>
+                <tr>
+                    <td th:if="${q.option3 != null}" th:text = "'(c): '+${q.option3}">op3</td>
+                    <td th:if="${q.option4 != null}" th:text = "'(d): '+${q.option4}">op4</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                    <b>Answer</b>
+                    <input type="text" class = "answer" >
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" th:text = "'Marks :'+${q.marks}">Marks</td>
+                </tr>
+            </table>
+            <button id = "submit">Submit</button>
+        </div>
+    </div>
+</div>
+<script src="/resources/js/bootstrap.mini.js"></script>
+<script th:inline = "javascript">
+
+    document.getElementById("submit").onclick = function(){
+        var classesNodeList = document.querySelectorAll(".answer");
+        values = [];
+        for(var i = 0; i < classesNodeList.length; i++) {
+        values.push(classesNodeList[i].value);
+        }
+        var answer = [[${questions}]]
+        num =0;
+        for( var i=0; i < values.length ; i++)
+        {
+            console.log(answer[i].correctAnswer + "< > " + values[i])
+            if(answer[i].correctAnswer == values[i]){
+
+                num = num + answer[i].marks;
+            }
+        }
+        console.log("Total Number = "+ num )
+        window.location = '/saveMarks?marks=' + num;
+    }
+
+</script>
+</body>
+</html>

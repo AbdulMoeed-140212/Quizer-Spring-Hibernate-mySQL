@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../css/bootstrap.min.css"  th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+    <h2>Question Type Selection</h2>
+    <p>Select Type of Question </p>
+    <form action = "/selectType">
+            <input type="radio" class ="radio" value="1" name="optradio"> MCQ <br>
+            <input type="radio" class ="radio" value="2" name="optradio"> True / False <br>
+            <input type="radio" class ="radio" value="3" name="optradio"> Simple Text Base Answer<br>
+            <input type="submit" class="btn btn-info" value="Next">
+    </form>
+        </div>
+    </div>
+</div>
+<script src="/resources/js/bootstrap.mini.js"></script>
+</body>
+</html>

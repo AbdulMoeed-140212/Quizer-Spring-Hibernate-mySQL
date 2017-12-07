@@ -1,14 +1,25 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head> 
-    <title>Getting Started: Serving Web Content</title> 
+    <title>The Home Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../css/bootstrap.min.css"  th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
 </head>
 <body>
-    <form action="/greeting">
-        <input type="text"   name = "name" value = "" >
-        <input type="submit" value="Submit">
-    </form>
-    <p>Get your greeting <a href="/greeting">here</a></p>
+<div class="containner">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1>Home Page </h1>
+            <p>Click On a Link</p>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info"><a href="/view">View Questions </a></li>
+                <li class="list-group-item list-group-item-info"><a href="/add">Add Questions</a></li>
+                <li class="list-group-item list-group-item-info"><a href="/attempt">Attempt Quiz</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <script src="/resources/js/bootstrap.mini.js"></script>
 </body>
 </html>

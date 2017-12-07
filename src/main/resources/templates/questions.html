@@ -16,12 +16,13 @@
                 <td colspan="2" th:text = "'Q '+ ${q.uid}+' : '+${q.question}"></td>
             </tr>
             <tr>
-                <td th:text = "'(a): '+${q.option1}">op1</td>
-                <td th:text = "'(b): '+${q.option2}">op2</td>
+                <td th:if="${q.option1 != null}" th:text = "'(a): '+${q.option1}">op1</td>
+                <td th:if="${q.option2 != null}" th:text = "'(b): '+${q.option2}">op2</td>
+                <td th:if="${ q instanceof T(Quizer.model.type.truefalse) }"  th:text = "True"> </td>
             </tr>
             <tr>
-                <td th:text = "'(c): '+${q.option3}">op3</td>
-                <td th:text = "'(d): '+${q.option4}">op4</td>
+                <td th:if="${q.option3 != null}" th:text = "'(c): '+${q.option3}">op3</td>
+                <td th:if="${q.option4 != null}" th:text = "'(d): '+${q.option4}">op4</td>
             </tr>
             <tr>
                 <td colspan="2" th:text = "'Answer : '+${q.correctAnswer}">Correct Answer</td>
