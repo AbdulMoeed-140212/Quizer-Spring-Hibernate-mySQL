@@ -55,11 +55,22 @@ public class appcontroller {
         //return "greeting";
     }
     @RequestMapping(value = "/savequestion", method = RequestMethod.POST)
-    public String addNewPost(@Valid mcq questions, BindingResult bindingResult, Model model) {
+    public String saveSimpleQuestion(@Valid Questions questions, BindingResult bindingResult, Model model) {
         questionsDao.save(questions);
         return "redirect:/view";
     }
 
+    @RequestMapping(value = "/savemcq", method = RequestMethod.POST)
+    public String saveMcq(@Valid mcq questions, BindingResult bindingResult, Model model) {
+        questionsDao.save(questions);
+        return "redirect:/view";
+    }
+
+    @RequestMapping(value = "/savetf", method = RequestMethod.POST)
+    public String saveTruefalse(@Valid truefalse questions, BindingResult bindingResult, Model model) {
+        questionsDao.save(questions);
+        return "redirect:/view";
+    }
     @RequestMapping("/attempt")
     public String attempt(Model model){
         List<Questions> questions = questionsDao.findAll();

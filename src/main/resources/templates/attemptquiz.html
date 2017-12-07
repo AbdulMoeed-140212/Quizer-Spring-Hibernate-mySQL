@@ -15,13 +15,17 @@
                 <tr>
                     <td colspan="2" th:text = "'Q '+ ${q.uid}+' : '+${q.question}"></td>
                 </tr>
-                <tr>
+                <tr th:if="${q instanceof T(Quizer.model.type.mcq)}">
                     <td th:if="${q.option1 != null}" th:text = "'(a): '+${q.option1}">op1</td>
                     <td th:if="${q.option2 != null}" th:text = "'(b): '+${q.option2}">op2</td>
                 </tr>
-                <tr>
+                <tr th:if="${q instanceof T(Quizer.model.type.mcq)}">
                     <td th:if="${q.option3 != null}" th:text = "'(c): '+${q.option3}">op3</td>
                     <td th:if="${q.option4 != null}" th:text = "'(d): '+${q.option4}">op4</td>
+                </tr>
+                <tr th:if="${q instanceof T(Quizer.model.type.truefalse)}">
+                    <td th:text = "'(a): '+${q.trueyes}">op3</td>
+                    <td th:text = "'(b): '+${q.fasleno}">op4</td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -48,14 +52,21 @@
         }
         var answer = [[${questions}]]
         num =0;
+        maxnum =0;
+        var report = ""
         for( var i=0; i < values.length ; i++)
         {
             console.log(answer[i].correctAnswer + "< > " + values[i])
             if(answer[i].correctAnswer == values[i]){
-
+                report = report + "Question " +(i+1)+ "is Correct\n"
                 num = num + answer[i].marks;
+            }else{
+                report = report + "Question " +(i+1)+ "is Wrong\n"
             }
+            maxnum = maxnum + answer[i].marks;
         }
+        report = report + "Total Marks = " + num + " Out of " + maxnum
+        alert(report)
         console.log("Total Number = "+ num )
         window.location = '/saveMarks?marks=' + num;
     }

@@ -8,13 +8,24 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
     <h2>Question Type Selection</h2>
     <p>Select Type of Question </p>
-    <form action = "/selectType">
-            <input type="radio" class ="radio" value="1" name="optradio"> MCQ <br>
-            <input type="radio" class ="radio" value="2" name="optradio"> True / False <br>
-            <input type="radio" class ="radio" value="3" name="optradio"> Simple Text Base Answer<br>
+    <form action = "/selectType" >
+        <div class="form-group">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info">
+                    <label class="radio-inline"><input type="radio" value="1" name="optradio"> MCQ</label>
+                </li>
+                <li class="list-group-item list-group-item-success">
+                    <label class="radio-inline"><input type="radio" value="2" name="optradio"> True / False</label>
+                </li>
+                <li class="list-group-item list-group-item-warning">
+                    <label class="radio-inline"><input type="radio" value="3" name="optradio"> Simple Text Base Answer</label>
+                </li>
+            </ul>
+        </div>
             <input type="submit" class="btn btn-info" value="Next">
     </form>
         </div>
