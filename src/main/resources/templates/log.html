@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../css/bootstrap.min.css"  th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+<body>
+<div class="container">
+    <ul>
+        <li th:each = "log : ${logs}">
+            We said hello to
+            <span th:text="${log.name} "></span>
+            at
+            <span th:text="${log.timestamp} "></span>
+        </li>
+    </ul>
+</div>
+<script src="/resources/js/bootstrap.mini.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../css/bootstrap.min.css"  th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+    <h1>Questions</h1>
+        <table border="1px" th:each = "q:${questions}" class="table">
+            <tr>
+                <td colspan="2" th:text = "'Q '+ ${q.uid}+' : '+${q.question}"></td>
+            </tr>
+            <tr>
+                <td th:text = "'(a): '+${q.option1}">op1</td>
+                <td th:text = "'(b): '+${q.option2}">op2</td>
+            </tr>
+            <tr>
+                <td th:text = "'(c): '+${q.option3}">op3</td>
+                <td th:text = "'(d): '+${q.option4}">op4</td>
+            </tr>
+            <tr>
+                <td colspan="2" th:text = "'Answer : '+${q.correctAnswer}">Correct Answer</td>
+            </tr>
+            <tr>
+                <td colspan="2" th:text = "'Marks :'+${q.marks}">Marks</td>
+            </tr>
+        </table>
+        </div>
+    </div>
+</div>
+    <script src="/resources/js/bootstrap.mini.js"></script>
+</body>
+</html>
